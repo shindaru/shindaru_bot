@@ -44,11 +44,11 @@ client.on("messageCreate", async (msg) => {
        //NOW SEND THE RESULT BACK TO SERVER
        msg.reply(result.results[index].url);
   }
-  else if (msg.content == "no u") {
+  else if (tokens.includes == "rado! no u") {
       msg.reply(`No,<@${msg.member.id}> w :).`);
     } 
 
-    else if (msg.content == "no w") {
+    else if (tokens.includes == "rado! no w") {
       msg.reply(`No,<@${msg.member.id}> u :).`);
     }
      else {
