@@ -27,14 +27,17 @@ client.on("messageCreate", async (msg) => {
   const keywords = tokens.slice(1, tokens.length).join(" ");
   if (text.includes("rado!")) {
     if (tokens[0].toLowerCase() === "rado!gif") {
-      const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot`;
+      const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot&limit=8`;
 
       //FETCH THE RESULTS
       const response = await fetch(url);
       //CONVERT TO JSON
       const result = await response.json();
       //NOW WE CAN RANDOMLY SELECT THE GIF FROM THE RESULTS WE FETCHED
-      const index = Math.floor(Math.random() * result.results.length);
+      const index = Math.floor(Math.random()*result.results.length)
+      while(index>8){
+       index = Math.floor(Math.random() * result.results.length);
+      }
       //NOW SEND THE RESULT BACK TO SERVER
       msg.reply(result.results[index].url);
     } else if (keywords.includes("no u")) {
