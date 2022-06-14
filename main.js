@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const generateImage = require("./generateimage");
-require('dotenv').config();
+require("dotenv").config();
 const fetch = require("node-fetch");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
@@ -11,7 +11,7 @@ let bot = {
   prefix: "rado!",
   owners: [" "],
 };
-let TENOR_KEY ="AIzaSyCBfsSBnWmFJZB0OZaGbevecaeayWJHQmc"
+let TENOR_KEY = "AIzaSyCBfsSBnWmFJZB0OZaGbevecaeayWJHQmc";
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
@@ -25,28 +25,23 @@ client.on("messageCreate", async (msg) => {
   let text = msg.toString();
   const tokens = msg.content.split(" ");
   const keywords = tokens.slice(1, tokens.length).join(" ");
-  if (text.includes("rado!")){
-  if(tokens[0].toLowerCase()==="rado!gif"){
-       const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot`
-       
-       ;
-       //FETCH THE RESULTS
-       const response = await fetch(url);
-       //CONVERT TO JSON
-       const result = await response.json();
-       //NOW WE CAN RANDOMLY SELECT THE GIF FROM THE RESULTS WE FETCHED
-       const index = Math.floor(Math.random() * result.results.length);
-       //NOW SEND THE RESULT BACK TO SERVER
-       msg.reply(result.results[index].url);
-  }
-  else if (keywords.includes("no u")) {
-      msg.reply(`No,<@${msg.member.id}> w :).`);
-    } 
+  if (text.includes("rado!")) {
+    if (tokens[0].toLowerCase() === "rado!gif") {
+      const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot`;
 
-    else if (keywords.includes("no w")) {
+      //FETCH THE RESULTS
+      const response = await fetch(url);
+      //CONVERT TO JSON
+      const result = await response.json();
+      //NOW WE CAN RANDOMLY SELECT THE GIF FROM THE RESULTS WE FETCHED
+      const index = Math.floor(Math.random() * result.results.length);
+      //NOW SEND THE RESULT BACK TO SERVER
+      msg.reply(result.results[index].url);
+    } else if (keywords.includes("no u")) {
+      msg.reply(`No,<@${msg.member.id}> w :).`);
+    } else if (keywords.includes("no w")) {
       msg.reply(`No,<@${msg.member.id}> u :).`);
-    }
-     else {
+    } else {
       let izrecheniq = [
         "Shte te izsipq palqcho.",
         "Smrudlio.",
@@ -54,7 +49,8 @@ client.on("messageCreate", async (msg) => {
         "Shibai se.",
         "Liglio.",
         "Cum.",
-        "A da se shibash?","Sounds like an iss-U not an iss-me"
+        "A da se shibash?",
+        "Sounds like an iss-U not an iss-me",
       ];
       let repeat = izrecheniq[Math.floor(Math.random() * izrecheniq.length)];
       msg.reply(`<@${msg.member.id}> ` + repeat);
