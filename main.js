@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const generateImage = require("./generateimage");
-require('dotenv').config({path:__dirname+'/.env'});
+require('dotenv').config();
 const fetch = require("node-fetch");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
