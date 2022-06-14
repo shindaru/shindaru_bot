@@ -54,7 +54,7 @@ client.on("messageCreate", async (msg) => {
         "Shibai se.",
         "Liglio.",
         "Cum.",
-        "A da se shibash?",
+        "A da se shibash?","Sounds like an iss-U not an iss-me"
       ];
       let repeat = izrecheniq[Math.floor(Math.random() * izrecheniq.length)];
       msg.reply(`<@${msg.member.id}> ` + repeat);
