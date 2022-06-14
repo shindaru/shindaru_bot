@@ -8,9 +8,7 @@
   },
   "main": "main.js",
   "scripts": {
-    npm run main.js
   },
-  "start": "main.js",
   "author": "Radoslav Manolov",
   "license": "ISC",
   "dependencies": {
