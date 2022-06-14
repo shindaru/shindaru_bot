@@ -26,10 +26,10 @@ client.on("ready", () => {
 client.on("messageCreate", async (msg) => {
   let text = msg.toString();
   const tokens = msg.content.split(" ");
+  const keywords = tokens.slice(1, tokens.length).join(" ");
   if (text.includes("rado!")){
   if(tokens[0].toLowerCase()==="rado!gif"){
        //WE WILL COMBINE THE WORDS WHICH HAS BEEN SPLITTED EXPECT THE FIRST WORD
-       const keywords = tokens.slice(1, tokens.length).join(" ");
        //NOW THIS IS THE API ENDPOINT FROM WHICH WE WILL RECEIVE THE GIFS
        //HERE WE WILL GET 10 GIFS FROM THIS YOU CAN CHANGE IT YOU WANT
        const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot&limit=8`
@@ -44,11 +44,11 @@ client.on("messageCreate", async (msg) => {
        //NOW SEND THE RESULT BACK TO SERVER
        msg.reply(result.results[index].url);
   }
-  else if (tokens.includes == "rado! no u") {
+  else if (keywords.includes("no u")) {
       msg.reply(`No,<@${msg.member.id}> w :).`);
     } 
 
-    else if (tokens.includes == "rado! no w") {
+    else if (keywords.includes("no w")) {
       msg.reply(`No,<@${msg.member.id}> u :).`);
     }
      else {
