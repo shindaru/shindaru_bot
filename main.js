@@ -1,16 +1,17 @@
 const Discord = require("discord.js");
 const generateImage = require("./generateimage");
-require("dotenv").config();
+require('dotenv').config({path:__dirname+'/.env'});
+const fetch = require("node-fetch");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
 
 let bot = {
   client,
-  prefix: "n.",
+  prefix: "rado!",
   owners: [" "],
 };
-
+let TENOR_KEY ="AIzaSyCBfsSBnWmFJZB0OZaGbevecaeayWJHQmc"
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
@@ -22,22 +23,29 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-client.on("message", async (msg) => {
+client.on("messageCreate", async (msg) => {
   let text = msg.toString();
   const tokens = msg.content.split(" ");
-  if (text.includes(text.includes("rado!"))){
+  if (text.includes("rado!")){
   if(tokens[0].toLowerCase()==="rado!gif"){
-    const keywords = tokens.slice(1,tokens.length).join(" ");
-
-    const url = `https://api.tenor.com/v1/search?q=${keywords}&key=${process.env.TENOR_KEY}$limit=10`;
-    const response = await fetch(url);
-    const result = await response.json();
-    const index = Math.floor(Math.random()*result.results.length);
-
-    msg.reply(result.results[index.url])
+       //WE WILL COMBINE THE WORDS WHICH HAS BEEN SPLITTED EXPECT THE FIRST WORD
+       const keywords = tokens.slice(1, tokens.length).join(" ");
+       //NOW THIS IS THE API ENDPOINT FROM WHICH WE WILL RECEIVE THE GIFS
+       //HERE WE WILL GET 10 GIFS FROM THIS YOU CAN CHANGE IT YOU WANT
+       const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot&limit=8`
+       
+       ;
+       //FETCH THE RESULTS
+       const response = await fetch(url);
+       //CONVERT TO JSON
+       const result = await response.json();
+       //NOW WE CAN RANDOMLY SELECT THE GIF FROM THE RESULTS WE FETCHED
+       const index = Math.floor(Math.random() * result.results.length);
+       //NOW SEND THE RESULT BACK TO SERVER
+       msg.reply(result.results[index].url);
   }
-  if (msg.content == "no u") {
-      msg.reply(`No,<@${message.member.id}> w :).`);
+  else if (msg.content == "no u") {
+      msg.reply(`No,<@${msg.member.id}> w :).`);
     } 
 
     else if (msg.content == "no w") {

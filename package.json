@@ -1,5 +1,5 @@
 {
-  "name": "Discord-bot",
+  "name": "discord-bot",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -12,6 +12,6 @@
     "canvas": "^2.9.1",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1",
-    "node-fetch": "^3.2.6"
+    "node-fetch": "^2.6.7"
   }
 }
