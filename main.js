@@ -2,18 +2,25 @@ const Discord = require("discord.js");
 const generateImage = require("./generateimage");
 require("dotenv").config();
 const fetch = require("node-fetch");
+
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
+
 //push check
 let bot = {
   client,
   prefix: "rado!",
   owners: [" "],
 };
+
 let TENOR_KEY = "AIzaSyCBfsSBnWmFJZB0OZaGbevecaeayWJHQmc";
+
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
+
+client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload);
+client.loadEvents(bot, false);
 
 module.exports = bot;
 
@@ -34,9 +41,9 @@ client.on("messageCreate", async (msg) => {
       //CONVERT TO JSON
       const result = await response.json();
       //NOW WE CAN RANDOMLY SELECT THE GIF FROM THE RESULTS WE FETCHED
-      const index = Math.floor(Math.random()*result.results.length)
-      while(index>8){
-       index = Math.floor(Math.random() * result.results.length);
+      const index = Math.floor(Math.random() * result.results.length);
+      while (index > 8) {
+        index = Math.floor(Math.random() * result.results.length);
       }
       //NOW SEND THE RESULT BACK TO SERVER
       msg.reply(result.results[index].url);
@@ -44,6 +51,7 @@ client.on("messageCreate", async (msg) => {
       msg.reply(`No,<@${msg.member.id}> w :).`);
     } else if (keywords.includes("no w")) {
       msg.reply(`No,<@${msg.member.id}> u :).`);
+    } else if (keywords.includes("play")) {
     } else {
       let izrecheniq = [
         "Shte te izsipq palqcho.",
