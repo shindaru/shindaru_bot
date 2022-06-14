@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
 });
-
+//push check
 let bot = {
   client,
   prefix: "rado!",
