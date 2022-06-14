@@ -17,8 +17,6 @@ client.events = new Discord.Collection();
 
 module.exports = bot;
 
-const nikolaID = "308557421410910208";
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
@@ -29,10 +27,7 @@ client.on("messageCreate", async (msg) => {
   const keywords = tokens.slice(1, tokens.length).join(" ");
   if (text.includes("rado!")){
   if(tokens[0].toLowerCase()==="rado!gif"){
-       //WE WILL COMBINE THE WORDS WHICH HAS BEEN SPLITTED EXPECT THE FIRST WORD
-       //NOW THIS IS THE API ENDPOINT FROM WHICH WE WILL RECEIVE THE GIFS
-       //HERE WE WILL GET 10 GIFS FROM THIS YOU CAN CHANGE IT YOU WANT
-       const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot&limit=8`
+       const url = `https://tenor.googleapis.com/v2/search?q=${keywords}&key=${TENOR_KEY}&client_key=shindaru_bot`
        
        ;
        //FETCH THE RESULTS
